@@ -157,7 +157,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="linked_list\node.h" />
+    <ClInclude Include="linked_list\DoubleNode.h" />
+    <ClInclude Include="linked_list\double_linked_list.h" />
+    <ClInclude Include="linked_list\SingleNode.h" />
     <ClInclude Include="linked_list\node_abstraction.h" />
     <ClInclude Include="linked_list\linked_list_abstraction.h" />
     <ClInclude Include="linked_list\single_linked_list.h" />

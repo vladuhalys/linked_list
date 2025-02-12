@@ -3,7 +3,7 @@
 
 #include "node_abstraction.h"
 
-class Node : public INode
+class SingleNode : public INode
 {
 private:
     IElement* value_ = nullptr;
@@ -21,9 +21,9 @@ public:
     {
         return *this->value_;
     }
-    Node() = default;
-    Node(IElement* value) : value_(value) {}
-    ~Node() override
+    SingleNode() = default;
+    SingleNode(IElement* value) : value_(value) {}
+    ~SingleNode() override
     {
         delete value_;
     }

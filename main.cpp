@@ -1,4 +1,6 @@
 #include <iostream>
+
+#include "linked_list/double_linked_list.h"
 #include "linked_list/single_linked_list.h"
 using namespace std;
 
@@ -32,15 +34,30 @@ public:
     }
 };
 
+class DoubleLinkedListProvider
+{
+public:
+    static void print(DoubleLinkedList *list)
+    {
+        INode* temp = list->get_head();
+        while (temp != nullptr)
+        {
+            Value<Test*>* val = dynamic_cast<Value<Test*>*>(&temp->get_value());
+            cout << *val << " ";
+            temp = temp->get_next();
+        }
+    }
+};
+
 int main()
 {
-    SingleLinkedList * list = new SingleLinkedList();
+    DoubleLinkedList * list = new DoubleLinkedList();
     list->push_back(new Value<Test*>(new Test(1)));
     list->push_back(new Value<Test*>(new Test(2)));
     list->push_back(new Value<Test*>(new Test(3)));
     list->push_back(new Value<Test*>(new Test(4)));
 
-    LinkedListProvider::print(list);
+    DoubleLinkedListProvider::print(list);
 
     delete list;
     

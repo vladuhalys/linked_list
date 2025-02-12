@@ -1,6 +1,7 @@
 #ifndef SINGLE_LINKED_LIST_ABSTRACTION_H
 #define SINGLE_LINKED_LIST_ABSTRACTION_H
 
+#include "DoubleNode.h"
 #include "node_abstraction.h"
 
 class ILinkedList
@@ -26,7 +27,6 @@ class BaseLinkedList : public ILinkedList
 public:
     BaseLinkedList() = default;
     virtual ~BaseLinkedList() = default;
-    
     
     virtual bool is_head_null() { return head_ == nullptr; }
     virtual bool is_tail_null() { return tail_ == nullptr; }
@@ -59,6 +59,34 @@ public:
     virtual void increment_size() { size_++; }
     virtual void decrement_size() { size_--; }
     
+};
+
+class BaseDoubleLinkedList : public BaseLinkedList
+{
+public:
+    BaseDoubleLinkedList() = default;
+    void set_tail_prev(INode *node)
+    {
+        dynamic_cast<DoubleNode*>(tail_)->set_prev(node);
+        tail_ = node;
+    }
+    void set_head_prev(INode *node)
+    {
+        dynamic_cast<DoubleNode*>(head_)->set_prev(node);
+        head_ = node;
+    }
+    void set_tail_next_and_prev(INode *node)
+    {
+        dynamic_cast<DoubleNode*>(tail_)->set_next(node);
+        dynamic_cast<DoubleNode*>(node)->set_prev(tail_);
+        tail_ = node;
+    }
+    void set_head_next_and_prev(INode *node)
+    {
+        dynamic_cast<DoubleNode*>(head_)->set_prev(node);
+        dynamic_cast<DoubleNode*>(node)->set_next(head_);
+        head_ = node;
+    }
 };
 
 #endif // SINGLE_LINKED_LIST_ABSTRACTION_H

@@ -2,7 +2,7 @@
 #define SINGLE_LINKED_LIST_H
 
 #include <iostream>
-#include "node.h"
+#include "SingleNode.h"
 #include "value.h"
 #include "linked_list_abstraction.h"
 
@@ -11,14 +11,14 @@ class SingleLinkedList : BaseLinkedList
 public:
     void push_back(IElement *value) override
     {
-        Node * new_node = new Node(value);
+        SingleNode * new_node = new SingleNode(value);
         is_head_null() ? set_head_and_tail_both(new_node) : set_tail_next(new_node);
         increment_size();
     }
 
     void push_front(IElement* value) override
     {
-        Node * new_node = new Node(value);
+        SingleNode * new_node = new SingleNode(value);
         is_head_null() ? set_head_and_tail_both(new_node) : set_head_next(new_node);
         increment_size();
     }
@@ -71,7 +71,7 @@ public:
             for (size_t i = 0; i < index - 1; i++) {
                 node = node->get_next();
             }
-            INode *new_elem = new Node(value);
+            INode *new_elem = new SingleNode(value);
             new_elem->set_next(new_elem->get_next());
         }
         increment_size();
@@ -95,7 +95,7 @@ public:
     }
     void remove(IElement* value, bool (*equil)(IElement first, IElement second)) override
     {
-        INode * node_value = new Node(value);
+        INode * node_value = new SingleNode(value);
         INode * node = get_head();
         int index = 0;
         while (node != nullptr) {
@@ -115,7 +115,7 @@ public:
     }
     
     SingleLinkedList() : BaseLinkedList() {}
-    SingleLinkedList(size_t size, Node* list_nodes)
+    SingleLinkedList(size_t size, SingleNode* list_nodes)
     {
         this->size_ = size;
     }
